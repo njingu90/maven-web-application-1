@@ -19,7 +19,8 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: |
-               mvn --batch-mode --update-snapshots verify
+               //mvn --batch-mode --update-snapshots verify
+               mvn -B package --file pom.xml
                mkdir staging && cp target/*.war staging
       - uses: actions/upload-artifact@v2
         with:
@@ -35,13 +36,6 @@ jobs:
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
-      - name: Inspect builder
-        run: |
-             echo "Name:      ${{ steps.buildx.outputs.name }}"
-             echo "Endpoint:  ${{ steps.buildx.outputs.endpoint }}"
-             echo "Status:    ${{ steps.buildx.outputs.status }}"
-             echo "Flags:     ${{ steps.buildx.outputs.flags }}"
-             echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
@@ -50,9 +44,3 @@ jobs:
             file: ./Dockerfile
             push: true
             tags: ${{ secrets.DOCKER_HUB_USERNAME }}/project:v1.0
-
-
-
-
-
-
