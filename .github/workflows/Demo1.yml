@@ -19,7 +19,7 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: |
-               //mvn --batch-mode --update-snapshots verify
+               #mvn --batch-mode --update-snapshots verify
                mvn -B package --file pom.xml
                mkdir staging && cp target/*.war staging
       - uses: actions/upload-artifact@v2
