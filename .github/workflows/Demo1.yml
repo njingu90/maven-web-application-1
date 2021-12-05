@@ -19,9 +19,7 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: |
-               #//mvn --batch-mode --update-snapshots verify
-               mvn -B package --file pom.xml
-               mkdir staging && cp target/*.war staging
+         mvn -B package --file pom.xml
       - name: list the current directories
         run: ls -a
       - name: what is in the target folder
@@ -37,8 +35,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: checkout
-        uses: actions/checkout@v2
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
