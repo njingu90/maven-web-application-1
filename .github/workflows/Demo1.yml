@@ -45,5 +45,5 @@ jobs:
             context: ./
             file: ./Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/project:v1.2
+            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/project:v1.3
 
